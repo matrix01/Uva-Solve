@@ -1,0 +1,7 @@
+Case #1: 7 is a Happy number.
+Case #2: 4 is an Unhappy number.
+Case #3: 13 is a Happy number.
+Case #4: 100 is a Happy number.
+Case #5: 15847 is an Unhappy number.
+Case #6: 12354 is an Unhappy number.
+Case #7: 4587 is an Unhappy number.

@@ -1,0 +1,51 @@
+#define MAX_ITEMS 20
+#define CAPACITY  5000
+
+int V[MAX_ITEMS+1][CAPACITY+1], K[MAX_ITEMS+1][CAPACITY+1] ;
+
+/* Find a solution to maximizing VALUE while subjected to a maximum WEIGHT of W */
+/* values[n+1] = {0, v1, v2, ...vn} ;
+   weights[n+1] = {0, w1, w2, ... wn} ;
+   n = total number of items
+   W = maximum capacity of the knapsack
+*/
+int knapsack01(int W, int n, int values[MAX_ITEMS+1], int weights[MAX_ITEMS+1])
+{
+   int i, j, w, t, sol[MAX_ITEMS+1] ;
+
+   for (w=0; w<=W; w++)
+      V[0][w] = 0 ;
+
+   for (i=1; i<=n; i++) {
+      for (w=0; w<=W; w++) {
+         if (weights[i]<=w) {
+            t = values[i] + V[i-1][w-weights[i]] ;
+            if (V[i-1][w] > t) {
+               V[i][w] = V[i-1][w] ;
+               K[i][w] = 0 ;
+            }
+            else {
+               V[i][w] = t ;
+               K[i][w] = 1 ;
+            }
+         }
+         else {
+            V[i][w] = V[i-1][w] ;
+            K[i][w] = 0 ;
+         }
+      }
+   }
+
+   t = W ;
+   for (i=n, j=0; i>=1; i--) {
+      if (K[i][t]==1) {
+         sol[j++] = values[i] ;
+         t = t-weights[i] ;
+      }
+   }
+
+   for (--j; j>=0; j--)
+      printf("%d ", sol[j]) ;
+
+   return V[n][W] ;
+}

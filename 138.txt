@@ -1,0 +1,41 @@
+using namespace std;
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+#include<vector>
+#define LLU long long unsigned int
+#define LLD long long double
+LLU sum(LLU i)
+{
+    if(i%2==0)
+    {
+        return (i/2)*(i+1);
+    }
+    else return i*(i+1)/2;
+}
+int main()
+{
+    LLU t1,t2,count =0,i=6,j=6;
+    cout<<sum(5)<<endl;
+    while(true)
+    {
+        //cout<<j<<” “<<i<<endl;
+        if(count==10) break;
+        t1=sum(j-1);
+        t2=sum(i)-t1-j;
+        if(t1==t2)
+        {
+            cout<<count<<" "<<j<<" ans "<<i<<endl;
+            count++;
+        }
+        if(t1>t2 || j==i)
+        {
+            i++;
+            j=(i/2)-1;
+        }
+        j++;
+
+    }
+    return 0;
+}
